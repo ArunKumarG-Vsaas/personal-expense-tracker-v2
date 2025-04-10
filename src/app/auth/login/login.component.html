@@ -1,0 +1,24 @@
+<div class="login-main">
+    <div class="login-form">
+        <form [formGroup]="loginForm">
+            <div class="t2">
+               {{ htmlLabel['TEXT']['LOGIN_FORM_HEADER'] }}
+            </div>
+            <div>
+                <input class="form-control form-control-lg mt-3" [placeholder]="htmlLabel['PLACEHOLDER']['ENTER_EMAIL']" type="text" formControlName="email">
+                <span *ngIf="email?.touched && email?.hasError('required')" class="input-error">{{ validationMessages['EMAIL_REQUIRED'] }}</span>
+                <span *ngIf="email?.touched && email?.hasError('email')" class="input-error">{{ validationMessages['EMAIL_INVALID'] }}</span>
+            </div>
+            <div>
+                <input class="form-control form-control-lg mt-4" [placeholder]="htmlLabel['PLACEHOLDER']['ENTER_PASSWORD']" type="password" formControlName="password">
+                <span *ngIf="password?.touched && password?.hasError('required')" class="input-error">{{ validationMessages['PASSWORD_REQUIRED'] }}</span>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <button (click)="loginUser()" class="btn btn-primary mt-4">{{ htmlLabel['BUTTON']['LOGIN'] }}</button>
+            </div>
+            <div class="mt-2 text-center">
+                <!-- <span>{{ htmlLabel['TEXT']['NO_ACCOUNT'] }} </span><span><a class="link" [routerLink]="['/', routes.USER, routes.REGISTER]">{{ htmlLabel['BUTTON']['SIGN_UP'] }}</a></span> -->
+            </div>
+        </form>
+    </div>
+</div>
