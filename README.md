@@ -23,7 +23,7 @@ LayoutModule (for shared UI components)
     HeaderComponent (optional)
 
 SharedModule (optional for reusable utilities)
-    Reusable pipes, directives, and services
+    Reusable components, pipes, directives, and services
 
 src/
 ├── app/
@@ -104,4 +104,4 @@ function deleteRow(e, sheet) {
 
 
 # Build:
-    ng b --output-path builds --base-href /Personal_Expense_Tracker_Lite/
+    ng b --output-path docs --base-href /personal-expense-tracker-v2/
