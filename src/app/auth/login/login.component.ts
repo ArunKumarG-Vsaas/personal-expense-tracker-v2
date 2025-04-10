@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HTMLLABEL, MESSAGES } from 'src/app/shared/config/common-config';
-import { HtmlLabel, Message } from 'src/app/shared/interface/interface';
+import { HTMLLABEL, MESSAGES, SNACKBAR } from 'src/app/shared/config/common-config';
+import { HtmlLabel, Message, Snackbar } from 'src/app/shared/interface/interface';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,9 +14,15 @@ export class LoginComponent implements OnInit {
 
   public htmlLabel : HtmlLabel = HTMLLABEL;
   public validationMessages: Message['ERROR'] = MESSAGES['ERROR'];
+  public snackBarConfig: Snackbar = SNACKBAR;
+
+  public loadSpinner: boolean = false;
   
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _snackBarService: SnackbarService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
@@ -25,7 +32,16 @@ export class LoginComponent implements OnInit {
   }
 
   public loginUser(){
-
+    if(this.loginForm.valid){
+      this.loadSpinner = true
+    }
+    else{
+      this._snackBarService.showSnackBar(
+        "asa",
+        this.snackBarConfig.DELAY,
+        this.snackBarConfig.SUCCESS
+      )
+    }
   }
 
 

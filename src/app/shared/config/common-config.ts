@@ -1,4 +1,4 @@
-import { HtmlLabel, Message, Routes } from "../interface/interface";
+import { HtmlLabel, Message, Routes, Snackbar } from "../interface/interface";
 
 
 export const ROUTES : Routes = {
@@ -114,4 +114,10 @@ export const MESSAGES : Message = {
         CATEGORY_ADDED: "Category added successfully",
         LOGGED_OUT: "Logged out successfully",     
     }
+}
+
+export const SNACKBAR : Snackbar = {
+    DELAY: 5000,
+    SUCCESS: 'success',
+    ERROR: 'error'
 }

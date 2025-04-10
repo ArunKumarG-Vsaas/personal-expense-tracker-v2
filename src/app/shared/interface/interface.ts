@@ -13,3 +13,9 @@ export interface Message {
     ERROR: any,
     SUCCESS: any
 }
+
+export interface Snackbar {
+    DELAY: number,
+    SUCCESS: string,
+    ERROR: string
+}

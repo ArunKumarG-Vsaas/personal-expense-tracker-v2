@@ -5,8 +5,9 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { SpinnerComponent } from '../shared/component/spinner/spinner.component';
+import { SnackbarService } from '../shared/service/snackbar.service';
 
 
 
@@ -18,7 +19,12 @@ import { MatInputModule } from '@angular/material/input'
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SpinnerComponent,
+    MatSnackBarModule
+  ],
+  providers: [
+    SnackbarService
   ]
 })
 export class AuthModule { }
