@@ -1,5 +1,7 @@
 export interface Routes {
-    LOGIN : string
+    AUTH: string,
+    LOGIN : string,
+    REGISTER: string
 }
 
 export interface HtmlLabel {

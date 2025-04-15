@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HTMLLABEL, MESSAGES, SNACKBAR } from 'src/app/shared/config/common-config';
-import { HtmlLabel, Message, Snackbar } from 'src/app/shared/interface/interface';
+import { HTMLLABEL, MESSAGES, ROUTES, SNACKBAR } from 'src/app/shared/config/common-config';
+import { HtmlLabel, Message, Routes, Snackbar } from 'src/app/shared/interface/interface';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 @Component({
   selector: 'app-login',
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public htmlLabel : HtmlLabel = HTMLLABEL;
   public validationMessages: Message['ERROR'] = MESSAGES['ERROR'];
   public snackBarConfig: Snackbar = SNACKBAR;
+  public routesConfig : Routes = ROUTES;
 
   public loadSpinner: boolean = false;
   

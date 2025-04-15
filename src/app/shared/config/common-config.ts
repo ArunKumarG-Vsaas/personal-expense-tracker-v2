@@ -2,7 +2,9 @@ import { HtmlLabel, Message, Routes, Snackbar } from "../interface/interface";
 
 
 export const ROUTES : Routes = {
-    LOGIN : "login"
+    AUTH : "auth",
+    LOGIN : "login",
+    REGISTER : "register"
 }
 
 export const HTMLLABEL : HtmlLabel = {
@@ -75,11 +77,17 @@ export const HTMLLABEL : HtmlLabel = {
     }
 }
 
-export const validationLimit = {
+export const VALIDATION_LIMIT = {
     PASSWORD_MIN_LENGTH: 4,
     PASSWORD_MAX_LENGTH: 10,
     STRING_MAX_LENGTH: 20,
     LIST_ALL_EXPENSE_ROW_LIMIT: 15,
+}
+
+export const VALIDATION_REGEX = {
+    NAME_REGEX:  /^[a-zA-Z]+[a-zA-Z ]*$/,
+    PHONE_NUMBER_REGEX: /^\d{10}$/,
+    AMOUNT_REGEX: /^\d+(\.\d{1,2})?$/
 }
 
 export const MESSAGES : Message = {
@@ -89,8 +97,8 @@ export const MESSAGES : Message = {
         EMAIL_REQUIRED: "Email is required",
         EMAIL_INVALID: "Email is invalid",
         PASSWORD_REQUIRED: "Password is required",
-        PASSWORD_MIN_LENGTH: `Password should have minimum ${validationLimit.PASSWORD_MIN_LENGTH} characters`,
-        PASSWORD_MAX_LENGTH: `Password should have maximum ${validationLimit.PASSWORD_MAX_LENGTH} characters`,
+        PASSWORD_MIN_LENGTH: `Password should have minimum ${VALIDATION_LIMIT.PASSWORD_MIN_LENGTH} characters`,
+        PASSWORD_MAX_LENGTH: `Password should have maximum ${VALIDATION_LIMIT.PASSWORD_MAX_LENGTH} characters`,
         PASSWORD_STRENGTH: "Password is not strong enough",
         FIRST_NAME_REQUIRED: "First name is required",
         FIRST_NAME_INVALID: "First name is invalid",
@@ -117,7 +125,7 @@ export const MESSAGES : Message = {
 }
 
 export const SNACKBAR : Snackbar = {
-    DELAY: 5000,
+    DELAY: 2000,
     SUCCESS: 'success',
     ERROR: 'error'
 }

@@ -4,12 +4,12 @@ import { ROUTES } from './shared/config/common-config';
 
 const routes: Routes = [
   {
-    path: ROUTES.LOGIN,
+    path: ROUTES.AUTH,
     loadChildren: () => import('../app/auth/auth.module').then(module => module.AuthModule)
   },
   {
     path: '',
-    redirectTo: ROUTES.LOGIN,
+    redirectTo: ROUTES.AUTH,
     pathMatch: 'full'
   }
 ];
