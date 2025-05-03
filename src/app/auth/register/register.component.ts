@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { HTMLLABEL, MESSAGES, ROUTES, SNACKBAR, VALIDATION_LIMIT, VALIDATION_REGEX } from 'src/app/shared/config/common-config';
@@ -8,7 +9,15 @@ import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('300ms ease-in', style({opacity: 1}))
+      ])
+    ])
+  ]
 })
 export class RegisterComponent implements OnInit {
 

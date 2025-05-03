@@ -1,0 +1,10 @@
+
+<div class="home" [ngClass]="(changeDarkTheme)? 'dark-theme' : 'light-theme'">
+    <app-navbar (isDarkMode)="changeTheme($event)" (sideBar)="showSideBar($event)"></app-navbar>
+    <app-sidebar *ngIf="enableSideBar" (sideBarClose)="closeSideBar(true)"></app-sidebar>
+    
+    <div class="main-panel">
+        <router-outlet></router-outlet>
+    </div>
+    
+</div>

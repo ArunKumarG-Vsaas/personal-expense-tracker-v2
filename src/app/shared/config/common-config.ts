@@ -1,10 +1,15 @@
-import { HtmlLabel, Message, Routes, Snackbar } from "../interface/interface";
+import { HtmlLabel, Message, Routes, SideBar, Snackbar } from "../interface/interface";
 
 
 export const ROUTES : Routes = {
     AUTH : "auth",
     LOGIN : "login",
-    REGISTER : "register"
+    REGISTER : "register",
+    EXPENSE: "expense",
+    DASHBOARD: "dashboard",
+    ADD_EXPENSE: "add-expense",
+    LIST_EXPENSE: "show-all-expenses",
+    ERROR_PAGE: "error"
 }
 
 export const HTMLLABEL : HtmlLabel = {
@@ -129,3 +134,26 @@ export const SNACKBAR : Snackbar = {
     SUCCESS: 'success',
     ERROR: 'error'
 }
+
+
+
+export const SIDEBAR: SideBar[] = [
+    {
+        title: "Dashboard",
+        path: ROUTES.DASHBOARD,
+        isActive: false,
+        icon: "../../../../../../assets/icons/dashboard.png"
+    },
+    {
+        title: "Show All Expenses",
+        path: ROUTES.LIST_EXPENSE,
+        isActive: false,
+        icon: "../../../../../../assets/icons/all-expenses.png"
+    },
+    {
+        title: "Add Expense",
+        path: ROUTES.ADD_EXPENSE,
+        isActive: false,
+        icon: "../../../../../../assets/icons/add-expense.png"
+    }
+]

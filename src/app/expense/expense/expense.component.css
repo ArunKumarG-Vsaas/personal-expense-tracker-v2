@@ -1,0 +1,65 @@
+.light-theme {
+    --backgroud-color: #f9fafb;
+    --sidebar-background-color: white;
+    --sidebar-item-text-color: #4b5563;
+    --navbar-background-color: none;
+    --navbar-hamburger-hover-border-color: white;
+    --sidebar-box-shadow: 0px 4px 50px #d9ddfc89;
+    --sidebar-border: 1px solid #f5f3f5;
+    --sidebar-white-space-background-color: rgba(0, 0, 0, 0.4);
+
+    /* Dashboard */
+    --top-section-card-background: white;
+    --top-section-card-border-color: rgba(50, 46, 46, 0.1);
+    --top-section-card-shadow: 0px 4px 30px rgba(221, 224, 255, .54);
+    --top-section-card-amount-text-color: black;
+    --select-border-color: rgba(50, 46, 46, 0.1);
+
+    /* expense table */
+    --table-header-hover-color: rgba(67, 67, 67, 0.235);  
+    --table-header-background-color: rgb(249, 250, 251);  
+    --table-header-background-active: #eef2ff;
+    --table-header-text-color-active: #4338ca;
+
+    /* Profile Bar */
+    --profile-bar-item-background-color: rgb(223, 231, 239);
+
+    /* Profile Edit */
+    --edit-data-backgorund-color: rgb(250, 250, 250);
+
+}
+
+
+.dark-theme {
+    --backgroud-color: black;
+    --sidebar-background-color: #0f1522;
+    --sidebar-item-text-color: white;
+    --navbar-background-color: black;
+    --navbar-hamburger-hover-border-color: black;
+    --sidebar-box-shadow: none;
+    --sidebar-border:  1px solid rgba(255,255,255,.1);
+    --sidebar-white-space-background-color: rgba(0, 0, 0, 0.4);
+    --top-section-card-background: #0f1522;
+    --top-section-card-border-color: rgba(255,255,255,.1);
+    /* --top-section-card-shadow: 0px 4px 30px rgba(221, 224, 255, .54); */
+    --top-section-card-shadow: none;
+    --top-section-card-amount-text-color: white;
+    --select-border-color:  #303643;
+
+     /* expense table */
+     --table-header-hover-color: rgba(0, 0, 0, 0.4);
+     --table-header-background-color: rgb(15, 21, 34);
+     --table-header-background-active: rgba(129, 140, 248, 0.16);
+     --table-header-text-color-active:rgba(255, 255, 255, 0.87);
+
+     /* Profile Bar */
+     --profile-bar-item-background-color: rgb(223, 231, 239);
+
+     /* Edit Profile */
+     --edit-data-backgorund-color: black;
+}
+
+.home{
+    background: var(--backgroud-color);
+}
+

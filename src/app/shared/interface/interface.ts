@@ -1,7 +1,12 @@
 export interface Routes {
     AUTH: string,
     LOGIN : string,
-    REGISTER: string
+    REGISTER: string,
+    DASHBOARD: string,
+    ADD_EXPENSE: string,
+    LIST_EXPENSE: string,
+    ERROR_PAGE: string,
+    EXPENSE: string
 }
 
 export interface HtmlLabel {
@@ -20,4 +25,11 @@ export interface Snackbar {
     DELAY: number,
     SUCCESS: string,
     ERROR: string
+}
+
+export interface SideBar {
+    path: string;
+    title: string;
+    icon: string;
+    isActive: boolean;
 }

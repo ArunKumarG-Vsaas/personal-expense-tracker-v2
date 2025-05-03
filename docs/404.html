@@ -6,11 +6,55 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="loader-background">
+        <span class="loader"></span>
+    </div>
     <script>
         window.onload = function() {
-            window.location.href = "https://arunkumarg-vsaas.github.io/personal-expense-tracker-v2/"
+            setTimeout(() => {
+                window.location.href = "https://arunkumarg-vsaas.github.io/personal-expense-tracker-v2/"
+            }, 2000);
         };
     </script>
-    <h1>404 PAGE</h1>
 </body>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .loader-background {
+        height: 100%;
+        background-color: rgba(220, 212, 212, 0.281);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid rgb(54, 114, 183);
+        border-radius: 50%;
+        border-bottom-color: transparent;
+        /* Over riding default inline display of span to accomodate the width and height we gave. */
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
 </html>
