@@ -42,12 +42,12 @@
 
 .header-left-section>div:nth-child(1):hover {
     background-color: #6366f1;
-
-    .hamburger-menu div {
-        border-color: var(--navbar-hamburger-hover-border-color);
-    }
-
 }
+
+.header-left-section>div:nth-child(1):hover .hamburger-menu div {
+    border-color: var(--navbar-hamburger-hover-border-color);
+}
+
 
 .header-left-section>div:nth-child(2) {
     margin-left: 10px;
