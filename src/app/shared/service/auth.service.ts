@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MESSAGES } from '../config/common-config';
+import { APIURLS } from '../config/api-url-config';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +17,51 @@ export class AuthService {
     let apiReponse = await sendRequest(userData);
     return apiReponse;
     function sendRequest(value: any) {
+      // value.operation = 'login'
       return new Promise(async (resolve, reject) => {
-        let response = await fetch(`https://script.google.com/macros/s/AKfycbyeiN4vAoFL1w63ntvA-HxQjkU9M4qh5zZCrPRMnYssW9apvhSyzICwle1rfbFJfng/exec?sendEmail=true`,
-          {
-              method: 'POST',
-              body: JSON.stringify(value)
-          }
-        );
-        response = await response.json();
-        resolve(response);
+        try{
+          let response = await fetch(`${APIURLS.USER}?sendEmail=true`,
+            {
+                method: 'POST',
+                body: JSON.stringify(value),
+            }
+          );
+          response = await response.json();
+          resolve(response);
+        }
+        catch(error){
+          resolve({
+            status: 500,
+            message: MESSAGES.ERROR.SERVER_ERROR
+          });
+        }
+      })
+    }
+  }
+
+
+  public async loginUser(userData: any) : Promise<any>{ 
+    let apiReponse = await sendRequest(userData);
+    return apiReponse;
+    function sendRequest(value: any) {
+      value.operation = 'login'
+      return new Promise(async (resolve, reject) => {
+        try{
+          let response = await fetch(APIURLS.USER,
+            {
+                method: 'POST',
+                body: JSON.stringify(value),
+            }
+          );
+          response = await response.json();
+          resolve(response);
+        }
+        catch(error){
+          resolve({
+            status: 500,
+            message: MESSAGES.ERROR.SERVER_ERROR
+          });
+        }
       })
     }
   }
