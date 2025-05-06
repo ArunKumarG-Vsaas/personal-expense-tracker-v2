@@ -43,7 +43,8 @@ export const HTMLLABEL : HtmlLabel = {
         PHONE: "Phone",
         ADD_EXPENSE: "Add Expense",
         NO_DASHBOARD_TEXT: '"Hmmm...that blue button must be important...."',
-        NO_EXPENSE_FOUND: "No Expenses Found"
+        NO_EXPENSE_FOUND: "No Expenses Found",
+        NOTE: "Note"
     },
     BUTTON: {
         LOGIN: "Login",
@@ -69,7 +70,8 @@ export const HTMLLABEL : HtmlLabel = {
         ENTER_AMOUNT: "Enter Amount",
         SELECT_MODE: "Select a mode",
         SELECT_CATEGORY: "Select a category",
-        ENTER_CATEGORY: "Enter Category"
+        ENTER_CATEGORY: "Enter Category",
+        ENTER_NOTE: "Enter Note"
     },
 
     TABLE: {

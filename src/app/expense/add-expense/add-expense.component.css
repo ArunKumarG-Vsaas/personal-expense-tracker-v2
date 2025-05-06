@@ -1,0 +1,71 @@
+.add-expense-main{
+    width: 100%;
+    padding: 10px 20px; 
+    min-height: 100dvh - 50px;
+}
+
+
+.add-expense-form-main {
+    width: 100%;
+    background-color: var(--top-section-card-background);
+    border: 1px solid var(--top-section-card-border-color);
+    box-shadow: var(--top-section-card-shadow);
+    border-radius: 20px;
+    padding: 30px 25px;
+}
+
+.add-expense-form-main>div.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+.text-small {
+    color: var(--sidebar-item-text-color);
+}
+
+.text-big,
+.text-medium {
+    color: var(--top-section-card-amount-text-color);
+}
+
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 25px;
+}
+
+.full-width {
+    width: 100%;
+  }
+
+.option {
+    color: white;
+    background-color: #3234387c;
+}
+
+.option:hover{
+    color: white;
+    background-color: #3234387c;
+}
+
+@media screen and (max-width: 600px) {
+    .form-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+::ng-deep .mat-select-value {
+    color: var(--sidebar-item-text-color);   
+}
+  
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #4a148c; 
+    border-color: #4a148c; 
+  }
+  
+  
