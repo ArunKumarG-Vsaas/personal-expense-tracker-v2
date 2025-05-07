@@ -1,4 +1,4 @@
-import { HtmlLabel, Message, Routes, SideBar, Snackbar } from "../interface/interface";
+import { HtmlLabel, Message, Routes, SheetNames, SideBar, Snackbar } from "../interface/interface";
 
 
 export const ROUTES : Routes = {
@@ -144,18 +144,23 @@ export const SIDEBAR: SideBar[] = [
         title: "Dashboard",
         path: ROUTES.DASHBOARD,
         isActive: false,
-        icon: "../../../../../../assets/icons/dashboard.png"
+        icon: "assets/icons/dashboard.png"
     },
     {
         title: "Show All Expenses",
         path: ROUTES.LIST_EXPENSE,
         isActive: false,
-        icon: "../../../../../../assets/icons/all-expenses.png"
+        icon: "assets/icons/all-expenses.png"
     },
     {
         title: "Add Expense",
         path: ROUTES.ADD_EXPENSE,
         isActive: false,
-        icon: "../../../../../../assets/icons/add-expense.png"
+        icon: "assets/icons/add-expense.png"
     }
-]
+];
+
+export const SHEET_NAMES: SheetNames = {
+    MODE: "Mode",
+    CATEGORY: "Category"
+}

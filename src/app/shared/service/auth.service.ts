@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { MESSAGES } from '../config/common-config';
+import { EMPTY, Observable } from 'rxjs';
+import { MESSAGES, ROUTES } from '../config/common-config';
 import { APIURLS } from '../config/api-url-config';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { APIURLS } from '../config/api-url-config';
 export class AuthService {
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _router: Router
   ) { }
 
   public async registerUser(userData: any) : Promise<any>{ 
@@ -63,6 +65,16 @@ export class AuthService {
           });
         }
       })
+    }
+  }
+
+  public checkResponseStatus(apiReponse: any){
+    if(apiReponse.status == 500){
+      this._router.navigate([ROUTES.AUTH, ROUTES.LOGIN]);
+      return EMPTY;
+    }
+    else{
+      return apiReponse;
     }
   }
 }

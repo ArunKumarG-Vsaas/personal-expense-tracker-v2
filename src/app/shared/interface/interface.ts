@@ -33,3 +33,8 @@ export interface SideBar {
     icon: string;
     isActive: boolean;
 }
+
+export interface SheetNames {
+    MODE: string;
+    CATEGORY: string;
+}

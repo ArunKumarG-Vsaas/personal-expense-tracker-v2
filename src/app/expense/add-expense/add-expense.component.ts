@@ -1,25 +1,40 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { HTMLLABEL, MESSAGES, SNACKBAR, VALIDATION_REGEX } from 'src/app/shared/config/common-config';
 import { HtmlLabel, Message, Snackbar } from 'src/app/shared/interface/interface';
+import { ExpenseService } from 'src/app/shared/service/expense.service';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 
 @Component({
   selector: 'app-add-expense',
   templateUrl: './add-expense.component.html',
   styleUrls: ['./add-expense.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({opacity: 1}))
+      ])
+    ])
+  ]
 })
 export class AddExpenseComponent implements OnInit {
+  private _ngUnsubscribe: Subject<void> = new Subject();
   public htmlLabel : HtmlLabel = HTMLLABEL
   public validationMessages: any = MESSAGES.ERROR;
   public today: any = new Date();
   public addExpenseForm! : FormGroup
   public snackBarConfig: Snackbar = SNACKBAR;
+  public loadSpinner: boolean = false;
+  public categoryOptions: any[] = [];
+  public modeOptions: any[] = []
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _snackBarService: SnackbarService
+    private _snackBarService: SnackbarService,
+    private _expenseService: ExpenseService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +45,22 @@ export class AddExpenseComponent implements OnInit {
       mode: ['',[Validators.required]],
       date: ['', [Validators.required]],
       note: ['']
-    })
+    });
+    this._loadSharedData();
+  }
+
+  // Subscribing the sharedData observable to get mode and category options
+  private async _loadSharedData(){
+    this.loadSpinner = true;
+    this._expenseService.getSharedData()
+      .pipe(takeUntil(this._ngUnsubscribe.asObservable()))
+      .subscribe((sharedData : any) => {
+        if(sharedData){
+          this.categoryOptions = sharedData['categoryOptions'] || [];
+          this.modeOptions = sharedData['modeOptions'] || [];
+          this.loadSpinner = false;
+        }
+      })
   }
 
   addExpense(){
@@ -69,6 +99,11 @@ export class AddExpenseComponent implements OnInit {
 
   get date(){
     return this.addExpenseForm.get('date');
+  }
+
+  ngOnDestroy(): void{
+    this._ngUnsubscribe.next();
+    this._ngUnsubscribe.complete();
   }
 }
 

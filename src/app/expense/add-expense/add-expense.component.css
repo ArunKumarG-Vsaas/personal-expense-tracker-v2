@@ -1,6 +1,6 @@
 .add-expense-main{
     width: 100%;
-    padding: 10px 20px; 
+    padding: 10px 15px; 
     min-height: 100dvh - 50px;
 }
 
@@ -42,9 +42,8 @@
     width: 100%;
   }
 
-.option {
-    color: white;
-    background-color: #3234387c;
+.option:hover {
+    background-color: red;
 }
 
 .option:hover{

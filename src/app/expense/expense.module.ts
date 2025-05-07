@@ -16,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarService } from '../shared/service/snackbar.service';
+import { SnackbarComponent } from "../shared/component/snackbar/snackbar.component";
+import { SpinnerComponent } from '../shared/component/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,10 @@ import { SnackbarService } from '../shared/service/snackbar.service';
     MatSelectModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSnackBarModule
-  ],
+    MatSnackBarModule,
+    SnackbarComponent,
+    SpinnerComponent
+],
   providers: [
     SnackbarService
   ]
