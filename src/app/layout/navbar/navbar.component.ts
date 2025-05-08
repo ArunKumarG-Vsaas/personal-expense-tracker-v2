@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
 
   private _getSideBar(route: string){
     route = route.split('/')[2].trim();
-    console.log(route)
+    // console.log(route)
     return SIDEBAR.find(sidebar => sidebar.path == route) || SIDEBAR[0];
   }
 

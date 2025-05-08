@@ -2,7 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HTMLLABEL, MESSAGES, ROUTES, SNACKBAR } from 'src/app/shared/config/common-config';
+import { HTMLLABEL, LOCALSTORAGE_KEYS, MESSAGES, ROUTES, SNACKBAR } from 'src/app/shared/config/common-config';
 import { HtmlLabel, Message, Routes, Snackbar } from 'src/app/shared/interface/interface';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
@@ -56,7 +56,10 @@ export class LoginComponent implements OnInit {
           this.snackBarConfig.DELAY,
           (response.status < 400) ? this.snackBarConfig.SUCCESS : this.snackBarConfig.ERROR
         );
-        if(response.status < 400) this._router.navigate([ROUTES.EXPENSE]);
+        if(response.status < 400) {
+          this._authService.storeInLocal(LOCALSTORAGE_KEYS.TOKEN, response.token)
+          this._router.navigate([ROUTES.EXPENSE]);
+        }
       }
       else{
         this._snackBarService.showSnackBar(

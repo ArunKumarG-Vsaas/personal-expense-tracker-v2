@@ -5,17 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorPageComponent } from './shared/component/error-page/error-page.component';
+import { SpinnerComponent } from "./shared/component/spinner/spinner.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    SpinnerComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })

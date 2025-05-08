@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
-import { MESSAGES, ROUTES } from '../config/common-config';
+import { LOCALSTORAGE_KEYS, MESSAGES, ROUTES } from '../config/common-config';
 import { APIURLS } from '../config/api-url-config';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class AuthService {
     private _router: Router
   ) { }
 
-  public async registerUser(userData: any) : Promise<any>{ 
+  async registerUser(userData: any) : Promise<any>{ 
     let apiReponse = await sendRequest(userData);
     return apiReponse;
     function sendRequest(value: any) {
@@ -41,8 +41,7 @@ export class AuthService {
     }
   }
 
-
-  public async loginUser(userData: any) : Promise<any>{ 
+  async loginUser(userData: any) : Promise<any>{ 
     let apiReponse = await sendRequest(userData);
     return apiReponse;
     function sendRequest(value: any) {
@@ -68,9 +67,17 @@ export class AuthService {
     }
   }
 
-  public checkResponseStatus(apiReponse: any){
+  storeInLocal(key: string, value: string){
+    localStorage.setItem(key,value);
+  }
+
+  isLoggedIn(): Boolean{
+    return Boolean(localStorage.getItem(LOCALSTORAGE_KEYS.TOKEN));
+  }
+
+  checkResponseStatus(apiReponse: any){
     if(apiReponse.status == 500){
-      this._router.navigate([ROUTES.AUTH, ROUTES.LOGIN]);
+      this._router.navigate([ROUTES.ERROR_PAGE]);
       return EMPTY;
     }
     else{

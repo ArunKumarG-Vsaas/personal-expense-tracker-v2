@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ROUTES, SIDEBAR } from '../shared/config/common-config';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { ShowExpenseComponent } from './show-expense/show-expense.component';
+import { RouteGuardGuard } from '../shared/guard/route-guard.guard';
 
 const routes: Routes = [
   {
@@ -15,17 +16,17 @@ const routes: Routes = [
   {
     path: ROUTES.DASHBOARD,
     component: DashboardComponent,
-    data: {
-      title : "As"
-    }
+    canActivate: [RouteGuardGuard]
   },
   {
     path: ROUTES.ADD_EXPENSE,
-    component: AddExpenseComponent
+    component: AddExpenseComponent,
+    canActivate: [RouteGuardGuard]
   },
   {
     path: ROUTES.LIST_EXPENSE,
-    component: ShowExpenseComponent
+    component: ShowExpenseComponent,
+    canActivate: [RouteGuardGuard]
   }
 ];
 

@@ -1,0 +1,24 @@
+<div class="error-main" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme' ">
+    <div class="error-icon">
+        <img [src]="isDarkTheme ? errorData.icon.dark_theme : errorData.icon.light_theme" alt="">
+    </div>
+    <div class="error-code">
+        <div>
+            {{errorData.code}}
+        </div>
+        <div>
+            {{errorData.type}}
+        </div>
+    </div>
+    <div class="error-text">
+        <div>
+            {{errorData.text}}
+        </div>
+    </div>
+    <div class="error-button">
+        <div>
+            <button (click)="retry(errorData.code)">{{errorData.button_text}}</button>
+        </div>
+    </div>
+</div>
+<app-spinner [isLoading]="loadSpinner"></app-spinner>
