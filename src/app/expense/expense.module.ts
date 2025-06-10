@@ -18,6 +18,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarService } from '../shared/service/snackbar.service';
 import { SnackbarComponent } from "../shared/component/snackbar/snackbar.component";
 import { SpinnerComponent } from '../shared/component/spinner/spinner.component';
+import { RoundPipe } from "../shared/pipe/round.pipe";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SpinnerComponent } from '../shared/component/spinner/spinner.component'
     MatDatepickerModule,
     MatSnackBarModule,
     SnackbarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    RoundPipe
 ],
   providers: [
     SnackbarService

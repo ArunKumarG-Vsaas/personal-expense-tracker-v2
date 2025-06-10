@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { LOCALSTORAGE_KEYS, MESSAGES, ROUTES } from '../config/common-config';
-import { APIURLS } from '../config/api-url-config';
+import { APIURL } from '../config/api-url-config';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AuthService {
       // value.operation = 'login'
       return new Promise(async (resolve, reject) => {
         try{
-          let response = await fetch(`${APIURLS.USER}?sendEmail=true`,
+          let response = await fetch(`${APIURL}?sheet=Users&operation=add-user&sendEmail=true`,
             {
                 method: 'POST',
                 body: JSON.stringify(value),
@@ -48,7 +48,7 @@ export class AuthService {
       value.operation = 'login'
       return new Promise(async (resolve, reject) => {
         try{
-          let response = await fetch(APIURLS.USER,
+          let response = await fetch(`${APIURL}?sheet=Users&operation=login-user&sendEmail=true`,
             {
                 method: 'POST',
                 body: JSON.stringify(value),
@@ -71,14 +71,26 @@ export class AuthService {
     localStorage.setItem(key,value);
   }
 
+  getFromLocal(key: string){
+    return localStorage.getItem(key);
+  }
+
   isLoggedIn(): Boolean{
     return Boolean(localStorage.getItem(LOCALSTORAGE_KEYS.TOKEN));
   }
 
   checkResponseStatus(apiReponse: any){
     if(apiReponse.status == 500){
-      this._router.navigate([ROUTES.ERROR_PAGE]);
+      this._router.navigate([ROUTES.ERROR_PAGE], {
+        queryParams: { code : 500 }
+      });
       return EMPTY;
+    }
+    else if(apiReponse.status == 403){
+      localStorage.removeItem(LOCALSTORAGE_KEYS.TOKEN);
+      this._router.navigate([ROUTES.ERROR_PAGE], {
+        queryParams: { code: 403 }
+      })
     }
     else{
       return apiReponse;

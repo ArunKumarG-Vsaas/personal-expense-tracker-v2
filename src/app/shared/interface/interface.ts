@@ -37,6 +37,7 @@ export interface SideBar {
 export interface SheetNames {
     MODE: string;
     CATEGORY: string;
+    EXPENSE: string;
 }
 
 export interface ErrorData {

@@ -16,6 +16,7 @@ export class ExpenseComponent implements OnInit {
 
   ngOnInit(): void {
     this._expenseService.loadSharedData();
+    this._expenseService.loadExpenseData();
 
   }
 

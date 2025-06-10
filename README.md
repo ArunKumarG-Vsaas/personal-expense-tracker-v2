@@ -105,3 +105,7 @@ function deleteRow(e, sheet) {
 
 # Build:
     ng b --output-path docs --base-href /personal-expense-tracker-v2/
+
+
+Top Spendings
+Recent

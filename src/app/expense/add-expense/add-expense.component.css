@@ -56,15 +56,5 @@
         grid-template-columns: 1fr;
     }
 }
-
-::ng-deep .mat-select-value {
-    color: var(--sidebar-item-text-color);   
-}
-  
-
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: #4a148c; 
-    border-color: #4a148c; 
-  }
   
   

@@ -1,1 +1,85 @@
-<p>dashboard works!</p>
+<div class="dashboard-main">
+  <!-- top section -->
+  <div class="top-section">
+    <div class="amount-cards">
+      <div class="text-small weight-600">{{htmlLabel['TEXT']['TOTAL_EXPENSE']}}</div>
+      <div class="text-big weight-600">&#8377; {{ 1000 | round:2}}</div>
+    </div>
+    <div class="amount-cards">
+      <div class="text-small weight-600">{{htmlLabel['TEXT']['THIS_MONTH']}}</div>
+      <div class="text-big weight-600">&#8377; 30</div>
+    </div>
+    <div class="amount-cards">
+      <div class="text-small weight-600">{{htmlLabel['TEXT']['THIS_WEEK']}}</div>
+      <div class="text-big weight-600">&#8377; 1002.11212</div>
+    </div>
+    <div class="amount-cards">
+      <div class="text-small weight-600">{{htmlLabel['TEXT']['TODAY']}}</div>
+      <div class="text-big weight-600">&#8377; 12210</div>
+    </div>
+  </div>
+
+  <div class="middle-section">
+        <div class="graph-section">
+          <div>
+            <div class="text-medium weight-600">
+              {{htmlLabel['TEXT']['GRAPH_NAME']}}
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="full-width">
+                    <mat-select [value]="weeklyMonthGraphFilter[0].option" (selectionChange)="createWeekMonthGraph(weeklyMonthGraphTypeSelected, $event.value)">
+                        <mat-option *ngFor="let option of weeklyMonthGraphFilter" [value]="option.option" class="text-small" ngClass="option" >
+                            {{option.option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>   
+            </div>
+          </div>
+          <div>
+            <canvas  id="weekMonthGraph" class="graph-canvas text-small" >{{ createWeekMonthGraph }}</canvas>
+          </div>
+          <div class="text-medium">
+            <div>
+              <label class="pointer"><input (click)="createWeekMonthGraph(chartType[0], weeklyMonthGraphFilterSelected)" type="radio" name="chartType" checked>{{htmlLabel['TEXT']['BAR_GRAPH']}}</label>
+            </div>
+            <div>
+              <label class="pointer"><input (click)="createWeekMonthGraph(chartType[1], weeklyMonthGraphFilterSelected)" type="radio" name="chartType">{{htmlLabel['TEXT']['LINE_GRAPH']}}</label>
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="middle-section">
+        <div class="graph-section">
+          <div>
+            <div class="text-medium weight-600">
+              {{htmlLabel['TEXT']['GRAPH_NAME']}}
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="full-width">
+                    <mat-select [value]="modeCategoryGraphFilter[0].option" (selectionChange)="createModeCategoryGraph(weeklyMonthGraphTypeSelected, $event.value)">
+                        <mat-option *ngFor="let option of modeCategoryGraphFilter" [value]="option.option" class="text-small" ngClass="option" >
+                            {{option.option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>   
+            </div>
+          </div>
+          <div>
+            <canvas  id="modeCategoryGraph" class="graph-canvas text-small" >{{ modeCategoryGraph }}</canvas>
+          </div>
+          <div class="text-medium">
+            <div>
+              <label class="pointer"><input (click)="createModeCategoryGraph(chartType[0], modeCategoryGraphFilterSelected)" type="radio" name="chartType" checked>{{htmlLabel['TEXT']['BAR_GRAPH']}}</label>
+            </div>
+            <div>
+              <label class="pointer"><input (click)="createModeCategoryGraph(chartType[1], modeCategoryGraphFilterSelected)" type="radio" name="chartType">{{htmlLabel['TEXT']['LINE_GRAPH']}}</label>
+            </div>
+          </div>
+        </div>
+  </div>
+
+</div>
+
+<app-spinner [isLoading]="loadSpinner"></app-spinner>
+

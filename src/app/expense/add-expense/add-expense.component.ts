@@ -63,13 +63,31 @@ export class AddExpenseComponent implements OnInit {
       })
   }
 
-  addExpense(){
+  async addExpense(){
     if(this.addExpenseForm.valid){
-      this._snackBarService.showSnackBar(
-        "Expense Created",
-        this.snackBarConfig.DELAY,
-        this.snackBarConfig.SUCCESS
-      );
+      this.loadSpinner = true;
+      const expenseData = this.addExpenseForm.value;
+      expenseData.category = this.categoryOptions.find(option => option.id == expenseData.category).name;
+      expenseData.mode = this.modeOptions.find(option => option.id == expenseData.mode).name;
+      expenseData.date = new Date(expenseData.date).toDateString();
+      let response = await this._expenseService.addExpense(this.addExpenseForm.value);
+      if(response){
+        this._snackBarService.showSnackBar(
+          (response.status == 500) ? MESSAGES.ERROR.SERVER_ERROR : response.message,
+          this.snackBarConfig.DELAY,
+          (response.status < 400) ? this.snackBarConfig.SUCCESS : this.snackBarConfig.ERROR
+        );
+
+        if(response.status == 201) this.addExpenseForm.reset();
+      }
+      else{
+        this._snackBarService.showSnackBar(
+          MESSAGES.ERROR.SERVER_ERROR,
+          this.snackBarConfig.DELAY,
+          this.snackBarConfig.ERROR
+        )
+      }
+      this.loadSpinner = false;
     }
     else{
       this._snackBarService.showSnackBar(

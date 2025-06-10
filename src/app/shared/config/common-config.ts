@@ -1,3 +1,4 @@
+import { ChartTypeRegistry } from "chart.js";
 import { ErrorData, HtmlLabel, Message, Routes, SheetNames, SideBar, Snackbar } from "../interface/interface";
 
 
@@ -44,7 +45,9 @@ export const HTMLLABEL : HtmlLabel = {
         ADD_EXPENSE: "Add Expense",
         NO_DASHBOARD_TEXT: '"Hmmm...that blue button must be important...."',
         NO_EXPENSE_FOUND: "No Expenses Found",
-        NOTE: "Note"
+        NOTE: "Note",
+        BAR_GRAPH: "Bar Graph",
+        LINE_GRAPH: "Line Graph"
     },
     BUTTON: {
         LOGIN: "Login",
@@ -196,9 +199,47 @@ export const ERROR_PAGE = {
 
 export const SHEET_NAMES: SheetNames = {
     MODE: "Mode",
-    CATEGORY: "Category"
+    CATEGORY: "Category",
+    EXPENSE: "Expenses"
 }
 
 export const LOCALSTORAGE_KEYS = {
     TOKEN: "token"
 }
+
+
+export const chartConfig = {
+    TEXT_COLOR: "#acaeb3",
+    BAR_COLOR: "#6366f1",
+    BAR_LABEL: "Expense",
+    X_AXIS: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat","Sun"],
+    X_AXIS_MONTH: ["Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+}
+
+export const weekMonthGraphFilter = [
+    {
+        option: "This Week"
+    },
+    {
+        option: "Last Week"
+    },
+    {
+        option: "Monthly"
+    }
+];
+
+export const modeCategoryFilter = [
+    {
+        option: "Mode"
+    },
+    {
+        option: "Category"
+    }
+]
+
+
+export const chartType: (keyof ChartTypeRegistry)[] = [
+    "bar", 
+    "line"
+];
