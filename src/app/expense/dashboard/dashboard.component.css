@@ -25,7 +25,7 @@
     color: var(--top-section-card-amount-text-color);
 }
 
-.graph-section, .amount-cards{
+.graph-section, .amount-cards, .div-section{
     background-color: var(--top-section-card-background);
     border: 1px solid var(--top-section-card-border-color);
     box-shadow: var(--top-section-card-shadow);
@@ -36,7 +36,7 @@
 
 .middle-section {
     display: grid;
-    grid-template-columns: 2fr 0.4fr;
+    grid-template-columns: 1fr 1fr;
     column-gap: 20px;
 }
 

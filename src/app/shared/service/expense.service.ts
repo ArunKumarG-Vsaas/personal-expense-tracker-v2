@@ -97,4 +97,28 @@ export class ExpenseService {
   public roundAmountToTwoDecimals(amount : any): string{
     return parseFloat(amount).toFixed(2);
   }
+
+  public sortExpenseByDateDesc(expenses: any){
+    expenses.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // console.log(data);
+    return expenses;
+  }
+
+  public sortExpenseByDateAsc(expenses: any){
+    expenses.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    // console.log(data);
+    return expenses;
+  }
+
+  public sortExpenseByAmountDesc(expenses: any[]) {
+    expenses.sort((a: any, b: any) => b.amount - a.amount);
+    // console.log(data);
+    return expenses;
+  }
+
+  public calculateTotal(expenses:any[]){
+    let total = 0;
+    expenses.forEach(expense => total += expense.amount);
+    return this.roundAmountToTwoDecimals(total);
+  }
 }

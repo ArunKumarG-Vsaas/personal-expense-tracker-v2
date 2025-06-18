@@ -47,7 +47,9 @@ export const HTMLLABEL : HtmlLabel = {
         NO_EXPENSE_FOUND: "No Expenses Found",
         NOTE: "Note",
         BAR_GRAPH: "Bar Graph",
-        LINE_GRAPH: "Line Graph"
+        LINE_GRAPH: "Line Graph",
+        RECENT_TRANSACTIONS: "Recent Expenses",
+        TOP_SPENT: "Top Expenses"
     },
     BUTTON: {
         LOGIN: "Login",

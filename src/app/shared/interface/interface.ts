@@ -50,3 +50,20 @@ export interface ErrorData {
         dark_theme: string
     }
 }
+
+export interface TableViewInput {
+    title: string;
+    tableData: any[];
+    options: {
+        canSort: boolean,
+        canSearchAnDownload: boolean,
+        isCustomColumn: boolean
+    }
+}
+
+export interface ExpenseStats {
+    total: string;
+    thisMonth: string;
+    thisWeek: string;
+    today: string
+}

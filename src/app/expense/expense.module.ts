@@ -19,6 +19,7 @@ import { SnackbarService } from '../shared/service/snackbar.service';
 import { SnackbarComponent } from "../shared/component/snackbar/snackbar.component";
 import { SpinnerComponent } from '../shared/component/spinner/spinner.component';
 import { RoundPipe } from "../shared/pipe/round.pipe";
+import { TableViewComponent } from "../shared/component/table-view/table-view.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RoundPipe } from "../shared/pipe/round.pipe";
     MatSnackBarModule,
     SnackbarComponent,
     SpinnerComponent,
-    RoundPipe
+    RoundPipe,
+    TableViewComponent
 ],
   providers: [
     SnackbarService

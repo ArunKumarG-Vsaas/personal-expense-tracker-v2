@@ -1,21 +1,21 @@
-<div class="dashboard-main">
+<div class="dashboard-main" *ngIf="expenseData">
   <!-- top section -->
   <div class="top-section">
     <div class="amount-cards">
       <div class="text-small weight-600">{{htmlLabel['TEXT']['TOTAL_EXPENSE']}}</div>
-      <div class="text-big weight-600">&#8377; {{ 1000 | round:2}}</div>
+      <div class="text-big weight-600">&#8377; {{ expenseStats?.total | round:2}}</div>
     </div>
     <div class="amount-cards">
       <div class="text-small weight-600">{{htmlLabel['TEXT']['THIS_MONTH']}}</div>
-      <div class="text-big weight-600">&#8377; 30</div>
+      <div class="text-big weight-600">&#8377; {{ expenseStats?.thisMonth| round:2}}</div>
     </div>
     <div class="amount-cards">
       <div class="text-small weight-600">{{htmlLabel['TEXT']['THIS_WEEK']}}</div>
-      <div class="text-big weight-600">&#8377; 1002.11212</div>
+      <div class="text-big weight-600">&#8377; {{ expenseStats?.thisWeek| round:2}}</div>
     </div>
     <div class="amount-cards">
       <div class="text-small weight-600">{{htmlLabel['TEXT']['TODAY']}}</div>
-      <div class="text-big weight-600">&#8377; 12210</div>
+      <div class="text-big weight-600">&#8377; {{ expenseStats?.today| round:2}}</div>
     </div>
   </div>
 
@@ -36,16 +36,20 @@
             </div>
           </div>
           <div>
-            <canvas  id="weekMonthGraph" class="graph-canvas text-small" >{{ createWeekMonthGraph }}</canvas>
+            <canvas  id="weekMonthGraph" class="graph-canvas text-small" >{{ weekMonthGraph }}</canvas>
           </div>
           <div class="text-medium">
             <div>
-              <label class="pointer"><input (click)="createWeekMonthGraph(chartType[0], weeklyMonthGraphFilterSelected)" type="radio" name="chartType" checked>{{htmlLabel['TEXT']['BAR_GRAPH']}}</label>
+              <label class="pointer"><input (click)="createWeekMonthGraph(chartType[0], weeklyMonthGraphFilterSelected)" type="radio" name="weekMonthGraphType" checked>{{htmlLabel['TEXT']['BAR_GRAPH']}}</label>
             </div>
             <div>
-              <label class="pointer"><input (click)="createWeekMonthGraph(chartType[1], weeklyMonthGraphFilterSelected)" type="radio" name="chartType">{{htmlLabel['TEXT']['LINE_GRAPH']}}</label>
+              <label class="pointer"><input (click)="createWeekMonthGraph(chartType[1], weeklyMonthGraphFilterSelected)" type="radio" name="weekMonthGraphType">{{htmlLabel['TEXT']['LINE_GRAPH']}}</label>
             </div>
           </div>
+        </div>
+
+        <div class="div-section">
+          <app-table-view [inputData$]="recentExpenses.asObservable()"></app-table-view>
         </div>
   </div>
 
@@ -57,7 +61,7 @@
             </div>
             <div>
               <mat-form-field appearance="outline" class="full-width">
-                    <mat-select [value]="modeCategoryGraphFilter[0].option" (selectionChange)="createModeCategoryGraph(weeklyMonthGraphTypeSelected, $event.value)">
+                    <mat-select [value]="modeCategoryGraphFilter[0].option" (selectionChange)="createModeCategoryGraph(modeCategoryGraphTypeSelected, $event.value)">
                         <mat-option *ngFor="let option of modeCategoryGraphFilter" [value]="option.option" class="text-small" ngClass="option" >
                             {{option.option}}
                         </mat-option>
@@ -70,12 +74,16 @@
           </div>
           <div class="text-medium">
             <div>
-              <label class="pointer"><input (click)="createModeCategoryGraph(chartType[0], modeCategoryGraphFilterSelected)" type="radio" name="chartType" checked>{{htmlLabel['TEXT']['BAR_GRAPH']}}</label>
+              <label class="pointer"><input (click)="createModeCategoryGraph(chartType[0], modeCategoryGraphFilterSelected)" type="radio" name="modeCategoryGraphType" checked>{{htmlLabel['TEXT']['BAR_GRAPH']}}</label>
             </div>
             <div>
-              <label class="pointer"><input (click)="createModeCategoryGraph(chartType[1], modeCategoryGraphFilterSelected)" type="radio" name="chartType">{{htmlLabel['TEXT']['LINE_GRAPH']}}</label>
+              <label class="pointer"><input (click)="createModeCategoryGraph(chartType[1], modeCategoryGraphFilterSelected)" type="radio" name="modeCategoryGraphType">{{htmlLabel['TEXT']['LINE_GRAPH']}}</label>
             </div>
           </div>
+        </div>
+
+        <div class="div-section">
+          <app-table-view [inputData$]="topSpent.asObservable()"></app-table-view>
         </div>
   </div>
 

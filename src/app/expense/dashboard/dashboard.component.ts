@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { chartConfig, weekMonthGraphFilter, HTMLLABEL, chartType, modeCategoryFilter } from 'src/app/shared/config/common-config';
 import Chart, { ChartTypeRegistry } from 'chart.js/auto';
 import { ExpenseService } from 'src/app/shared/service/expense.service';
+import { ExpenseStats, TableViewInput } from 'src/app/shared/interface/interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,10 @@ export class DashboardComponent implements OnInit {
   private _ngUnsubscribe: Subject<void> = new Subject();
   public htmlLabel: any = HTMLLABEL;
   public loadSpinner: boolean = false;
-  public expenseData: any = {};
+  public expenseData: any = null;
+  public recentExpenses: BehaviorSubject<TableViewInput | null> = new BehaviorSubject<any>(null);
+  public topSpent: BehaviorSubject<TableViewInput | null> = new BehaviorSubject<any>(null);
+  public expenseStats?: ExpenseStats;
 
   constructor(
     private _expenseService: ExpenseService
@@ -23,21 +27,59 @@ export class DashboardComponent implements OnInit {
     this._loadExpenseData();
   }
 
+  ngOnDestroy(): void {
+    this._ngUnsubscribe.next();
+    this._ngUnsubscribe.complete();
+  }
+
   private _loadExpenseData(){
     this.loadSpinner = true;
     this._expenseService.getExpenseData()
       .pipe(takeUntil(this._ngUnsubscribe.asObservable()))
       .subscribe((expenseData: any) => {
         if(expenseData){
+          // console.log(expenseData)
+          // console.log(expenseData.totalAmount)
           this.loadSpinner = false;
           this.expenseData = expenseData;
           setTimeout(() => {
             this.createWeekMonthGraph(chartType[0],  weekMonthGraphFilter[0].option);
             this.createModeCategoryGraph(chartType[0], modeCategoryFilter[0].option)
-          }, 50)
-          console.log(expenseData);
+          }, 50);
+
+          this._buildRecentAndTopSpentData(expenseData.allExpenses);
+          this.expenseStats = {
+            total: expenseData.totalAmount,
+            thisMonth: this._expenseService.calculateTotal(expenseData.currentMonthExpenses),
+            thisWeek: this._expenseService.calculateTotal(expenseData.currentWeekExpenses),
+            today: this._expenseService.calculateTotal(expenseData.todayExpenses)
+          }
         }
       })
+  }
+
+  private _buildRecentAndTopSpentData(expenses: any[]){
+    // Create a shallow copy:
+    let expenseCopy = Object.assign([], expenses);
+    this.recentExpenses.next({
+      title: HTMLLABEL.TEXT.RECENT_TRANSACTIONS,
+      tableData: this._expenseService.sortExpenseByDateDesc(expenseCopy).slice(0,5).map((exp: any) => { return {"Expense" : exp.expense, "Amount" : exp.amount , "Date" : exp.date } }),
+      options: {
+        canSearchAnDownload: false,
+        canSort: false,
+        isCustomColumn: true
+      }
+    })
+
+    this.topSpent.next({
+      title: HTMLLABEL.TEXT.TOP_SPENT,
+      tableData: this._expenseService.sortExpenseByAmountDesc(expenseCopy).slice(0,5).map((exp: any) => { return {"Expense" : exp.expense, "Amount" : exp.amount , "Date" : exp.date } }),
+      options: {
+        canSearchAnDownload: false,
+        canSort: false,
+        isCustomColumn: true
+      }
+    })
   }
 
   public chartType: (keyof ChartTypeRegistry)[] = chartType;
@@ -81,7 +123,7 @@ export class DashboardComponent implements OnInit {
       data: {
         // values on X-Axis
         labels: xValues,
-      
+        
 	       datasets: [
           {
             label: chartConfig.BAR_LABEL,
@@ -94,6 +136,11 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         aspectRatio:2.5,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
       
     });
