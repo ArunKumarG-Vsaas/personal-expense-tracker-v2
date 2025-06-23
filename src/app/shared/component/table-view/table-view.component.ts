@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { HTMLLABEL } from '../../config/common-config';
 import { HtmlLabel, TableViewInput } from '../../interface/interface';
+import { TruncateStringPipe } from '../../pipe/truncate-string.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TruncateStringPipe, NgxPaginationModule],
   templateUrl: './table-view.component.html',
   styleUrls: ['./table-view.component.css']
 })
@@ -28,8 +30,11 @@ export class TableViewComponent implements OnInit {
   public htmlLabel: HtmlLabel = HTMLLABEL;
 
   public customColumns: any[] = [];
-  public tableData: any[] = [];
   public title: string = ""
+
+  public expenseTableData: any[] = [];
+  public page: number = 1;
+  public limit: number = 10;
 
   constructor() { }
 
@@ -37,11 +42,11 @@ export class TableViewComponent implements OnInit {
     this.inputData$
     .pipe(takeUntil(this._ngUnsubscribe.asObservable()))
     .subscribe(data => {
-      if(data){
+      if(data && data.tableData){
+        console.log(data)
         this.title = data.title
         this.customColumns = (data.options.isCustomColumn) ? Object.keys(data.tableData[0]) : [];
-        this.tableData = data.tableData;
-        console.log(this.customColumns)
+        this.expenseTableData = data.tableData;
       }
     })
   }
@@ -49,8 +54,18 @@ export class TableViewComponent implements OnInit {
   ngOnDestroy(): void{
     this._ngUnsubscribe.next();
     this._ngUnsubscribe.complete();
+  }
 
+  public pageChanged(thisPage: any) {
+    this.page = thisPage
   }
 
 
+  public editExpense(expense: any){
+
+  }
+
+  public deleteExpense(expenseId: any, expenseName: any){
+
+  }
 }

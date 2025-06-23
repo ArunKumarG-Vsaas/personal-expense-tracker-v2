@@ -57,7 +57,8 @@ export interface TableViewInput {
     options: {
         canSort: boolean,
         canSearchAnDownload: boolean,
-        isCustomColumn: boolean
+        isCustomColumn: boolean,
+        limit?: number
     }
 }
 

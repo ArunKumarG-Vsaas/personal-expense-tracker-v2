@@ -1,1 +1,4 @@
-<p>show-expense works!</p>
+<div class="show-expense-main">
+      <app-table-view [inputData$]="expenseData$.asObservable()"></app-table-view>
+</div>
+<app-spinner [isLoading]="isLoading"></app-spinner>

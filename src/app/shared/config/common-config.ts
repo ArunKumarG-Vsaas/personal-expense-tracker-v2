@@ -85,7 +85,8 @@ export const HTMLLABEL : HtmlLabel = {
         AMOUNT: "Amount",
         MODE: "Mode",
         ACTION: "Actions",
-        DATE: "Date"
+        DATE: "Date",
+        NOTE: "Note"
     }
 }
 
